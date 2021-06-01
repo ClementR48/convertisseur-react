@@ -1,0 +1,35 @@
+.currencies {
+  background-color: black;
+  text-align: left;
+  height: 300px;
+  overflow-y: scroll;
+
+  h2{
+    color: mediumaquamarine;
+    padding: 10px;
+    margin: 0;
+
+
+  }
+
+  ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li{
+      color: mediumaquamarine;
+      padding: 10px;
+      border-top: 1px mediumaquamarine solid;
+      transition: all 0.8s;
+      cursor: pointer;
+      
+
+      &:hover {
+        background-color: mediumaquamarine;
+        color: black;
+        transition: all 0.2s;
+      }
+    }
+  }
+}
