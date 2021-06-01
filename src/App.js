@@ -14,16 +14,32 @@ class App extends React.Component {
       open:true,
       baseAmout: 1,
       currency: "Australian Dollar",
+      inputSearch: '',
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.computeAmout = this.computeAmout.bind(this);
-    this.handleClickCurrency = this.handleClickCurrency.bind(this)
+    this.handleClickCurrency = this.handleClickCurrency.bind(this);
+    this.setInputSearch = this.setInputSearch.bind(this);
+    this.getFilteredCurrencies = this.getFilteredCurrencies.bind(this);
+    this.setInputMontant = this.setInputMontant.bind(this)
   }
 
   handleClickCurrency(newCurrency) { 
     this.setState({
       currency: newCurrency
+    })
+  }
+
+  setInputSearch(newValue) {
+    this.setState({
+      inputSearch: newValue
+    })
+  }
+
+  setInputMontant(newValue) {
+    this.setState({
+      baseAmout: newValue
     })
   }
 
@@ -37,22 +53,47 @@ class App extends React.Component {
   computeAmout = () => {
     const { baseAmout, currency } = this.state;
     const currencyData = currenciesList.find((data) => (data.name === currency));
-    console.log(currencyData);
     const result = currencyData.rate * baseAmout;
     return result
+  }
+
+  getFilteredCurrencies() {
+    const{ inputSearch } = this.state;
+    let filteredCurrencies = currenciesList
+    if (inputSearch.length > 0) {
+      filteredCurrencies = currenciesList.filter((currency) => {
+        const minusculeInputSearch = inputSearch.toLowerCase();
+        const minusculeCurrencyName = currency.name.toLowerCase();
+        return minusculeCurrencyName.includes(minusculeInputSearch);
+      })
+    }
+    return filteredCurrencies
   }
 
 
   render() {
 
-    const { open, currency } = this.state;
+    const { open, currency, inputSearch, baseAmout } = this.state;
 
     const result = this.computeAmout();
+
+    const filteredCurrencies = this.getFilteredCurrencies();
+
+
+
     return (
       <div className="app">
-       <Header />
-       <Button open={open} manageClick={this.handleClick} />
-       {open && <Currencies currencies={currenciesList} state={this.handleClickCurrency}/>}
+       <Header montant={baseAmout} setMontant={this.setInputMontant}/>
+       <Button
+       open={open}
+       manageClick={this.handleClick}
+       />
+
+       {open && <Currencies
+       currencies={filteredCurrencies}
+       state={this.handleClickCurrency}
+       search={inputSearch}
+       setSearch={this.setInputSearch} />}
        <Footer value={result} currency={currency} />
       </div>
     )

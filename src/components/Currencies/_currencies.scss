@@ -4,11 +4,20 @@
   height: 300px;
   overflow-y: scroll;
 
-  h2{
-    color: mediumaquamarine;
+  input{
+    background-color: mediumaquamarine;
     padding: 10px;
     margin: 0;
+    font-style: italic;
+    font-weight: bold;
+    width: 100%;
+    font-size: 1.2em;
+  
 
+    &::placeholder{
+      color: black;
+      font-style: italic;
+    }
 
   }
 

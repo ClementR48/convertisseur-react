@@ -4,11 +4,23 @@ import PropTypes from 'prop-types'
 
 
 
-const Currencies = ({ currencies, state }) => {
+const Currencies = ({
+  currencies,
+  state,
+  search,
+  setSearch
+}) => { 
   
   return (
     <div className="currencies">
-      <h2>Currencies</h2>
+      <input
+        type="text"
+        placeholder="Recherche"
+        value={search}
+        onChange={(event) => {
+          setSearch(event.target.value)
+        }}>
+      </input>
       <ul>
         {currencies.map((currency) => (
          <li onClick={() => {
@@ -19,7 +31,7 @@ const Currencies = ({ currencies, state }) => {
   )
 }
 
-Currencies.prototype = {
+Currencies.proptype = {
   currencies: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
