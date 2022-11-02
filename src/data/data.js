@@ -28,5 +28,9 @@ export default [
     name: 'Czech Koruna',
     rate: 25.30
   },
+  {
+    name: 'Test',
+    rate: 1
+  },
 
 ]
