@@ -32,5 +32,9 @@ export default [
     name: 'Test',
     rate: 1
   },
+  {
+    name: 'Test2',
+    rate: 2
+  },
 
 ]
