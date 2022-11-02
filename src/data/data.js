@@ -9,7 +9,7 @@ export default [
     rate: 1.95
   },
   {
-    name: 'Brezilian Real',
+    name: 'Brazilian Real',
     rate: 4.87
   },
   {
